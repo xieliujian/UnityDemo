@@ -3,4 +3,4 @@
 
 1,BoomBeachOcean的Demo展示海岛奇兵匹配地图海洋的效果
 a, 效果图如下
-[image](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
+(https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
