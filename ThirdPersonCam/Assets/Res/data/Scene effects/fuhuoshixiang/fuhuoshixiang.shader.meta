@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: a6890af68175d0341a64817178ce642a
+timeCreated: 1491822778
+licenseType: Pro
+ShaderImporter:
+  defaultTextures:
+  - _liudong: {fileID: 2800000, guid: cac8992447ffd46478210ed7b60c979b, type: 3}
+  - _mask: {fileID: 2800000, guid: 1803d2889e3c2b64494da559f3f4a57f, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
