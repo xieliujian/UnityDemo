@@ -103,6 +103,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         InputManager.touchesBegin += TouchesBegin;
         InputManager.touchesMove += TouchesMoved;
+        InputManager.touchesStationary += TouchesStationary;
         InputManager.touchesEnd += TouchesEnd;
     }
 	
@@ -115,6 +116,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         InputManager.touchesBegin -= TouchesBegin;
         InputManager.touchesMove -= TouchesMoved;
+        InputManager.touchesStationary -= TouchesStationary;
         InputManager.touchesEnd -= TouchesEnd;
     }
 
@@ -143,7 +145,6 @@ public class ThirdPersonCam : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         mAngleH += Mathf.Clamp(mTouchMove.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed * 2.0f;
         mAngleV += Mathf.Clamp(mTouchMove.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed * 2.0f;
-        mTouchMove = Vector2.zero;
 #endif
 
         mAngleV = Mathf.Clamp(mAngleV, mMinVerticalAngle, mMaxVerticalAngle);
@@ -168,6 +169,7 @@ public class ThirdPersonCam : MonoBehaviour
         {
             if (touches.Length == 1)
             {
+                mTouchMove = Vector2.zero;
                 mTouchLastPos = touch.position;
             }
             else if (touches.Length == 2)
@@ -185,6 +187,21 @@ public class ThirdPersonCam : MonoBehaviour
             {
                 mTouchMove = touch.position - mTouchLastPos;
                 mTouchLastPos = touch.position;
+            }
+            else if (touches.Length == 2)
+            {
+
+            }
+        }
+    }
+
+    private void TouchesStationary(Touch[] touches)
+    {
+        foreach (var touch in touches)
+        {
+            if (touches.Length == 1)
+            {
+                mTouchMove = Vector2.zero;
             }
             else if (touches.Length == 2)
             {

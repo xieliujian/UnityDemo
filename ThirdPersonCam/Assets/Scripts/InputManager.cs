@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public static Action<Touch[]> touchesBegin;
     public static Action<Touch[]> touchesEnd;
     public static Action<Touch[]> touchesMove;
+    public static Action<Touch[]> touchesStationary;
     public static Action<Touch[]> touchesTap;
     
     void Awake()
@@ -54,18 +55,19 @@ public class InputManager : MonoBehaviour
                 {
                     touchesBegin(Input.touches);
                 }
-
-                if (tc.phase == TouchPhase.Moved && touchesMove != null)
+                else if (tc.phase == TouchPhase.Moved && touchesMove != null)
                 {
                     touchesMove(Input.touches);
                 }
-
-                if (tc.phase == TouchPhase.Ended && touchesEnd != null)
+                else if (tc.phase == TouchPhase.Stationary && touchesStationary != null)
+                {
+                    touchesStationary(Input.touches);
+                }
+                else if (tc.phase == TouchPhase.Ended && touchesEnd != null)
                 {
                     touchesEnd(Input.touches);
                 }
-
-                if (tc.phase == TouchPhase.Canceled && touchesEnd != null)
+                else if (tc.phase == TouchPhase.Canceled && touchesEnd != null)
                 {
                     touchesEnd(Input.touches);
                 }
