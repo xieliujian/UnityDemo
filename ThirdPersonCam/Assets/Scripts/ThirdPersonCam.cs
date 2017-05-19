@@ -135,14 +135,15 @@ public class ThirdPersonCam : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0))
         {
-            mAngleH += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_X), -1, 1) * mHorizontalAimingSpeed * Time.deltaTime;
-            mAngleV += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_Y), -1, 1) * mVerticalAimingSpeed * Time.deltaTime;
+            mAngleH += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_X), -1.0f, 1.0f) * mHorizontalAimingSpeed * Time.deltaTime;
+            mAngleV += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_Y), -1.0f, 1.0f) * mVerticalAimingSpeed * Time.deltaTime;
         }
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS
-        mAngleH += Mathf.Clamp(mTouchMove.x / Screen.width, -1, 1) * mHorizontalAimingSpeed;
-        mAngleV += Mathf.Clamp(mTouchMove.y / Screen.height, -1, 1) * mVerticalAimingSpeed;
+        mAngleH += Mathf.Clamp(mTouchMove.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed * 2.0f;
+        mAngleV += Mathf.Clamp(mTouchMove.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed * 2.0f;
+        mTouchMove = Vector2.zero;
 #endif
 
         mAngleV = Mathf.Clamp(mAngleV, mMinVerticalAngle, mMaxVerticalAngle);
