@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -59,7 +61,7 @@ public class ThirdPersonCam : MonoBehaviour
     /// <summary>
     /// 基础摄像机偏移的倍率的最大值
     /// </summary>
-    public float mMaxDistance = 3.0f;
+    public float mMaxDistance = 2.0f;
 
     /// <summary>
     /// 基础摄像机偏移的倍率的最小值
@@ -87,6 +89,7 @@ public class ThirdPersonCam : MonoBehaviour
     private float mDistance = 0.0f;
 
     private Vector2 mTouchMove = Vector2.zero;
+
     private Vector2 mTouchLastPos = Vector2.zero;
 
     #endregion
@@ -135,7 +138,7 @@ public class ThirdPersonCam : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             mAngleH += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_X), -1.0f, 1.0f) * mHorizontalAimingSpeed * Time.deltaTime;
             mAngleV += Mathf.Clamp(Input.GetAxis(INPUT_MOUSE_Y), -1.0f, 1.0f) * mVerticalAimingSpeed * Time.deltaTime;
@@ -163,66 +166,89 @@ public class ThirdPersonCam : MonoBehaviour
 
     #region 回调函数
 
+    private int mJoystickIndex = -1;
+
+    private int mMoveIndex = -1;
+
     private void TouchesBegin(Touch[] touches)
     {
-        foreach (var touch in touches)
+        for (int i = 0; i < touches.Length; i++)
         {
-            if (touches.Length == 1)
+            Touch touch = touches[i];
+
+            if (mJoystickIndex == -1)
             {
+                if (IsTouchOnJoystick(touch.position))
+                {
+                    mJoystickIndex = i;
+                }
+            }
+
+            if ( (mJoystickIndex != -1) && (i != mJoystickIndex) && (i < 2) )
+            {
+                mMoveIndex = i;
                 mTouchMove = Vector2.zero;
                 mTouchLastPos = touch.position;
-            }
-            else if (touches.Length == 2)
-            {
-
             }
         }
     }
 
     private void TouchesMoved(Touch[] touches)
     {
-        foreach (var touch in touches)
+        for (int i = 0; i < touches.Length; i++)
         {
-            if (touches.Length == 1)
+            Touch touch = touches[i];
+
+            if (i == mMoveIndex)
             {
                 mTouchMove = touch.position - mTouchLastPos;
                 mTouchLastPos = touch.position;
-            }
-            else if (touches.Length == 2)
-            {
-
             }
         }
     }
 
     private void TouchesStationary(Touch[] touches)
     {
-        foreach (var touch in touches)
+        for (int i = 0; i < touches.Length; i++)
         {
-            if (touches.Length == 1)
+            Touch touch = touches[i];
+
+            if (i == mMoveIndex)
             {
                 mTouchMove = Vector2.zero;
-            }
-            else if (touches.Length == 2)
-            {
-
             }
         }
     }
 
     private void TouchesEnd(Touch[] touches)
     {
-        foreach (var touch in touches)
+        for (int i = 0; i < touches.Length; i++)
         {
-            if (touches.Length == 1)
+            Touch touch = touches[i];
+
+            if (i == mJoystickIndex)
             {
+                mJoystickIndex = -1;
+            }
+            else if (i == mMoveIndex)
+            {
+                mMoveIndex = -1;
                 mTouchMove = Vector2.zero;
             }
-            else if (touches.Length == 2)
-            {
-
-            }
         }
+    }
+
+    #endregion
+
+    #region 函数
+
+    private bool IsTouchOnJoystick(Vector2 touchpos)
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return true;
+
+        Rect rect = new Rect(0, 0, Screen.width / 3.0f, Screen.height / 2.0f);
+        return rect.Contains(touchpos);
     }
 
     #endregion
