@@ -184,7 +184,13 @@ public class ThirdPersonCam : MonoBehaviour
                 }
             }
 
-            if ( (mJoystickIndex != -1) && (i != mJoystickIndex) && (i < 2) )
+            if (mJoystickIndex == -1 && touches.Length == 1)
+            {
+                mMoveIndex = i;
+                mTouchMove = Vector2.zero;
+                mTouchLastPos = touch.position;
+            }
+            else if ( (mJoystickIndex != -1) && (i != mJoystickIndex) && (i < 2) )
             {
                 mMoveIndex = i;
                 mTouchMove = Vector2.zero;
