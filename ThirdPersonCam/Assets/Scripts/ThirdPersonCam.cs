@@ -198,7 +198,7 @@ public class ThirdPersonCam : MonoBehaviour
             }
         }
     }
-
+    
     private void TouchesMoved(Touch[] touches)
     {
         for (int i = 0; i < touches.Length; i++)
