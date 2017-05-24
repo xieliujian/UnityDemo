@@ -6,7 +6,13 @@
 ****
 ## 目录
 * [BoomBeachOcean的Demo展示海岛奇兵匹配地图海洋的效果](#)
+* [ThirdPersonCam的Demo展示第三人称摄像机效果]
 ****
 ### BoomBeachOcean的Demo展示海岛奇兵匹配地图海洋的效果
 * a, 效果图如下
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
+
+### ThirdPersonCam的Demo展示第三人称摄像机效果
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/BoomBeachOcean/Ocean.png)
