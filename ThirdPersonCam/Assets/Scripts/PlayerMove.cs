@@ -10,7 +10,9 @@ public class PlayerMove : MonoBehaviour
 
     public CharacterController mCharCtrl;
 
-    Transform mTemp;
+    private Animator mAnimator;
+
+    private Transform mTemp;
 
     #region 内置函数
 
@@ -21,15 +23,21 @@ public class PlayerMove : MonoBehaviour
 
         GameObject go = new GameObject("TempJoystick");
         mTemp = go.transform;
-	}
-	
-	// Update is called once per frame
-	void Update () 
+
+        mAnimator = GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update () 
     {
         Vector3 dir = mJoystick.GetDir();
         if (dir != Vector3.zero)
         {
             OnJoystickMove(dir);
+        }
+        else
+        {
+            mAnimator.SetBool("run", false);
         }
     }
 
@@ -46,6 +54,7 @@ public class PlayerMove : MonoBehaviour
         transform.LookAt(transform.position + realdir);
 
         mCharCtrl.SimpleMove(realdir * 5);
+        mAnimator.SetBool("run", true);
     }
 
     private void OnJoystickMoveEnd(Vector2 delta)
