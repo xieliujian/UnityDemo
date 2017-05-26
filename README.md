@@ -30,5 +30,5 @@
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/AnimClipExtract/AnimClipExtract.png)
 
 * b, 功能说明:
-这个工具的作用是把美术导出的带动画的fbx提取出动画，这个使用Animator的时候只有使用这些提取的动画资源，打包的时候也只会打包这些提取的动画资源，减少包体大小
+* 这个工具的作用是把美术导出的动画fbx提取出动画，在使用Animator的时候只要使用这些提取的动画clip，打包的时候也只会打包这些提取的动画clip，减少包体大小
 ****
