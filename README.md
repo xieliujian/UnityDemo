@@ -27,4 +27,5 @@
 <h2 id="Demo3">AnimClipExtract的Demo展示提取AnimationClip的方法</h2>
 
 * a, 效果图如下
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/AnimClipExtract/AnimClipExtract.png)
 ****
