@@ -9,6 +9,7 @@
 * [ThirdPersonCam](#Demo2)
 * [AnimClipExtract](#Demo3)
 * [UIModelShow](#Demo4)
+* [Localization](#Demo5)
 ****
 
 <h2 id="Demo1">BoomBeachOcean的Demo展示海岛奇兵匹配地图海洋的效果</h2>
@@ -45,4 +46,7 @@
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/UIModelCam.png)
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/UICam.png)
 如上面3张截图所示，技术点在Camera的Depth分层和Culling Mask的Layer剔除, MainCam先渲染，渲染的是场景内的物体（但不包括ui和uimodel层）, 然后渲染UIModelCam, 只渲染uimodelcam层的物体，最后渲染ui，这样就是实现王者荣耀ui的模型显示的方法
+****
+
+<h2 id="Demo5">Localization的Demo展示ngui中多语言的使用</h2>
 ****
