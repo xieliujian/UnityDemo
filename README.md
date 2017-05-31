@@ -40,5 +40,8 @@
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/UIModelShow.png)
 
 * b, 功能说明:  
-这个Demo展示王者荣耀ui中显示3d模型的方法，
+这个Demo展示王者荣耀ui中显示3d模型的方法
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/MainCam.png)
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/UIModelCam.png)
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/UIModelShow/UICam.png)
 ****
