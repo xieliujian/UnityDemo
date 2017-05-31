@@ -49,4 +49,5 @@
 ****
 
 <h2 id="Demo5">Localization的Demo展示ngui中多语言的使用</h2>
+
 ****
