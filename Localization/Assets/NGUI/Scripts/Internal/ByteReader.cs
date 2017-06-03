@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2016 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2017 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using UnityEngine;
 using System.Text;
@@ -230,7 +230,7 @@ public class ByteReader
 			{
 				char ch = line[i];
 
-				if (ch == '\t')
+				if (ch == ',')
 				{
 					if (!insideQuotes)
 					{

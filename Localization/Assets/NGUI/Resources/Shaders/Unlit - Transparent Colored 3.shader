@@ -30,7 +30,6 @@ Shader "Hidden/Unlit/Transparent Colored 3"
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
@@ -46,6 +45,7 @@ Shader "Hidden/Unlit/Transparent Colored 3"
 				float4 vertex : POSITION;
 				half4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -55,6 +55,7 @@ Shader "Hidden/Unlit/Transparent Colored 3"
 				float2 texcoord : TEXCOORD0;
 				float4 worldPos : TEXCOORD1;
 				float2 worldPos2 : TEXCOORD2;
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			float2 Rotate (float2 v, float2 rot)
@@ -69,7 +70,9 @@ Shader "Hidden/Unlit/Transparent Colored 3"
 
 			v2f vert (appdata_t v)
 			{
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				UNITY_SETUP_INSTANCE_ID(v);
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.color = v.color;
 				o.texcoord = v.texcoord;
 				o.worldPos.xy = v.vertex.xy * _ClipRange0.zw + _ClipRange0.xy;
