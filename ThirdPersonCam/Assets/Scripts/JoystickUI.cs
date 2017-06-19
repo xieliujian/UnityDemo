@@ -1,74 +1,145 @@
 ﻿
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+using System;
 
-public class JoystickUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class InputMgrName
 {
-    public Action<Vector3> onMove;
-    public Action<Vector2> onMoveEnd;
+    public const string Horizontal = "Horizontal";
+    public const string Vertical = "Vertical";
+}
 
+public class JoystickUI : MonoBehaviour
+{
     #region 变量
 
-    public RectTransform mPosRect;
+    /// <summary>
+    /// 背景
+    /// </summary>
+    public UISprite mBg;
 
-    public Image mTouch;
+    /// <summary>
+    /// touch
+    /// </summary>
+    public UISprite mTouch;
 
-    private int mRadius;
+    /// <summary>
+    /// 移动事件
+    /// </summary>
+    public Action<Vector2> OnMove;
 
-    private bool mDrag = false;
+    /// <summary>
+    /// 移动结束事件
+    /// </summary>
+    public Action OnMoveEnd;
 
-    private Vector2 mBeginPos;
+    /// <summary>
+    /// 半径
+    /// </summary>
+    private float mRadius;
+    
+    /// <summary>
+    /// 是否触摸
+    /// </summary>
+    private bool mOnTouch = false;
 
     #endregion
 
     #region 内置函数
 
     // Use this for initialization
-	void Start () 
+    void Start ()
     {
-        mRadius = (int)((mPosRect.rect.yMax - mPosRect.rect.yMin) / 2);
-	}
+        UIEventListener.Get(mTouch.gameObject).onPress = OnTouchPress;
+        UIEventListener.Get(mTouch.gameObject).onDragStart = OnTouchDragStart;
+        UIEventListener.Get(mTouch.gameObject).onDrag = OnTouchDrag;
+        UIEventListener.Get(mTouch.gameObject).onDragEnd = OnTouchDragEnd;
+
+        mRadius = mBg.width * 0.5f;
+    }
 	
 	// Update is called once per frame
-	void Update () {
-
-    }
+	void Update ()
+    {
+        UpdateJoystick();
+	}
 
     #endregion
 
-    #region 继承回调函数
+    #region 回调函数
 
-    public void OnDrag(PointerEventData data)
+    private void OnTouchDragStart(GameObject go)
     {
-        if (mDrag)
+        mOnTouch = true;
+    }
+
+    private void OnTouchDrag(GameObject go, Vector2 delta)
+    {
+        mOnTouch = true;
+        mTouch.transform.localPosition += new Vector3(delta.x, delta.y, 0.0f);
+        mTouch.transform.localPosition = Vector3.ClampMagnitude(mTouch.transform.localPosition, GetRadius());
+    }
+
+    private void OnTouchDragEnd(GameObject go)
+    {
+        mOnTouch = false;
+        mTouch.transform.localPosition = Vector2.zero;
+    }
+
+    private void OnTouchPress(GameObject go, bool state)
+    {
+        mOnTouch = state;
+        if (!state)
         {
-            Vector3 delta = data.position - mBeginPos;
-            mTouch.transform.localPosition = Vector3.ClampMagnitude(delta, mRadius);
+            mTouch.transform.localPosition = Vector2.zero;
         }
     }
 
-    public void OnBeginDrag(PointerEventData data)
+    #endregion
+
+    #region 函数
+
+    private void UpdateJoystick()
     {
-        mDrag = true;
-        mBeginPos = data.position;
+        Transform touchtrans = mTouch.transform;
+        if (!mOnTouch)
+        {
+            float x = Input.GetAxis(InputMgrName.Horizontal);
+            float y = Input.GetAxis(InputMgrName.Vertical);
+
+            touchtrans.localPosition = Vector2.zero;
+
+            if (x != 0.0f)
+            {
+                touchtrans.localPosition = new Vector2(GetRadius() * x, touchtrans.localPosition.y);
+            }
+
+            if (y != 0.0f)
+            {
+                touchtrans.localPosition = new Vector2(touchtrans.localPosition.x, GetRadius() * y);
+            }
+
+            touchtrans.localPosition = Vector3.ClampMagnitude(touchtrans.localPosition, GetRadius());
+        }
+
+        Vector2 tempaxis = touchtrans.localPosition / GetRadius();
+        if (tempaxis == Vector2.zero)
+        {
+            if (OnMoveEnd != null)
+                OnMoveEnd();
+        }
+        else if (tempaxis.x != 0.0f || tempaxis.y != 0.0f)
+        {
+            if (OnMove != null)
+                OnMove(tempaxis);
+        }
     }
 
-    public void OnEndDrag(PointerEventData data)
+    private float GetRadius()
     {
-        mDrag = false;
-        mTouch.transform.localPosition = Vector3.zero;
-        onMoveEnd(Vector2.zero);
+        return mRadius;
     }
 
     #endregion
-
-    public Vector3 GetDir()
-    {
-        return mTouch.transform.localPosition.normalized;
-    }
 }

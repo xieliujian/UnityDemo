@@ -29,6 +29,11 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform mPlayer;
 
     /// <summary>
+    /// 控制摄像机的ui
+    /// </summary>
+    public JoystickCamUI mJoystickCamUI;
+
+    /// <summary>
     /// 角色中心点偏移
     /// </summary>
     public Vector3 mPivotOffset = new Vector3(0.0f, 1.0f, 0.0f);
@@ -104,10 +109,14 @@ public class ThirdPersonCam : MonoBehaviour
     // Use this for initialization
 	void Start ()
     {
+#if JOYSTICKCAMUI
+        mJoystickCamUI.OnDrag += OnJoystickCamDrag;
+#else
         InputManager.touchesBegin += TouchesBegin;
         InputManager.touchesMove += TouchesMoved;
         InputManager.touchesStationary += TouchesStationary;
         InputManager.touchesEnd += TouchesEnd;
+#endif
     }
 	
 	// Update is called once per frame
@@ -117,10 +126,14 @@ public class ThirdPersonCam : MonoBehaviour
 
     void OnDestroy()
     {
+#if JOYSTICKCAMUI
+        mJoystickCamUI.OnDrag -= OnJoystickCamDrag;
+#else
         InputManager.touchesBegin -= TouchesBegin;
         InputManager.touchesMove -= TouchesMoved;
         InputManager.touchesStationary -= TouchesStationary;
         InputManager.touchesEnd -= TouchesEnd;
+#endif
     }
 
     void LateUpdate()
@@ -137,6 +150,8 @@ public class ThirdPersonCam : MonoBehaviour
             return;
         }
 
+#if !JOYSTICKCAMUI
+
 #if UNITY_EDITOR
         if (Input.GetMouseButton(1))
         {
@@ -148,6 +163,8 @@ public class ThirdPersonCam : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         mAngleH += Mathf.Clamp(mTouchMove.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed * 2.0f;
         mAngleV += Mathf.Clamp(mTouchMove.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed * 2.0f;
+#endif
+
 #endif
 
         mAngleV = Mathf.Clamp(mAngleV, mMinVerticalAngle, mMaxVerticalAngle);
@@ -166,6 +183,15 @@ public class ThirdPersonCam : MonoBehaviour
 
     #region 回调函数
 
+#if JOYSTICKCAMUI
+
+    private void OnJoystickCamDrag(Vector2 delta)
+    {
+        mAngleH += Mathf.Clamp(delta.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed;
+        mAngleV += Mathf.Clamp(delta.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed;
+    }
+
+#else
     private int mJoystickIndex = -1;
 
     private int mMoveIndex = -1;
@@ -190,7 +216,7 @@ public class ThirdPersonCam : MonoBehaviour
                 mTouchMove = Vector2.zero;
                 mTouchLastPos = touch.position;
             }
-            else if ( (mJoystickIndex != -1) && (i != mJoystickIndex) && (i < 2) )
+            else if ((mJoystickIndex != -1) && (i != mJoystickIndex) && (i < 2))
             {
                 mMoveIndex = i;
                 mTouchMove = Vector2.zero;
@@ -198,7 +224,7 @@ public class ThirdPersonCam : MonoBehaviour
             }
         }
     }
-    
+
     private void TouchesMoved(Touch[] touches)
     {
         for (int i = 0; i < touches.Length; i++)
@@ -243,10 +269,13 @@ public class ThirdPersonCam : MonoBehaviour
             }
         }
     }
+#endif
 
     #endregion
 
     #region 函数
+
+#if !JOYSTICKCAMUI
 
     private bool IsTouchOnJoystick(Vector2 touchpos)
     {
@@ -256,6 +285,8 @@ public class ThirdPersonCam : MonoBehaviour
         Rect rect = new Rect(0, 0, Screen.width / 3.0f, Screen.height / 2.0f);
         return rect.Contains(touchpos);
     }
+
+#endif
 
     #endregion
 }
