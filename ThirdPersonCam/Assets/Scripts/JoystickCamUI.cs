@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using HedgehogTeam.EasyTouch;
 
 public class JoystickCamUI : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class JoystickCamUI : MonoBehaviour
     public Action OnClick;
 
     /// <summary>
+    /// pinch事件
+    /// </summary>
+    public Action<float> OnPinch;
+
+    /// <summary>
     /// 是否触发
     /// </summary>
     private bool mOnTouch = false;
@@ -38,12 +44,19 @@ public class JoystickCamUI : MonoBehaviour
         UIEventListener.Get(mWidget.gameObject).onClick = OnWidgetClick;
         UIEventListener.Get(mWidget.gameObject).onDrag = OnWidgetDrag;
         UIEventListener.Get(mWidget.gameObject).onPress = OnWidgetPress;
+
+        EasyTouch.On_Pinch += OnWidgetPinch;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
        
+    }
+
+    void OnDestroy()
+    {
+        EasyTouch.On_Pinch -= OnWidgetPinch;
     }
 
     #endregion
@@ -68,6 +81,18 @@ public class JoystickCamUI : MonoBehaviour
     private void OnWidgetPress(GameObject go, bool state)
     {
         mOnTouch = state;
+    }
+
+    private void OnWidgetPinch(Gesture gesture)
+    {
+        if (gesture.pickedObject != gameObject)
+            return;
+
+        float delta = gesture.deltaPinch * Time.deltaTime;
+
+        mOnTouch = false;
+        if (OnPinch != null)
+            OnPinch(delta);
     }
 
     #endregion

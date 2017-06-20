@@ -120,6 +120,7 @@ public class ThirdPersonCam : MonoBehaviour
         InputManager.touchesEnd += TouchesEnd;
 #else
         mJoystickCamUI.OnDrag += OnJoystickCamDrag;
+        mJoystickCamUI.OnPinch += OnJoystickCamPinch;
 #endif
     }
 	
@@ -137,6 +138,7 @@ public class ThirdPersonCam : MonoBehaviour
         InputManager.touchesEnd -= TouchesEnd;
 #else
         mJoystickCamUI.OnDrag -= OnJoystickCamDrag;
+        mJoystickCamUI.OnPinch -= OnJoystickCamPinch;
 #endif
     }
 
@@ -169,14 +171,13 @@ public class ThirdPersonCam : MonoBehaviour
         mAngleV += Mathf.Clamp(mTouchMove.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed * 2.0f;
 #endif
 
+        mDistance -= Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) * mZoomSpeed;
 #endif
 
         mAngleV = Mathf.Clamp(mAngleV, mMinVerticalAngle, mMaxVerticalAngle);
 
         Quaternion animRotation = Quaternion.Euler(-mAngleV, mAngleH, 0.0f);
         Quaternion camYRotation = Quaternion.Euler(0.0f, mAngleH, 0.0f);
-
-        mDistance -= Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) * mZoomSpeed;
         mDistance = Mathf.Clamp(mDistance, mMinDistance, mMaxDistance);
 
         mCamera.rotation = animRotation;
@@ -270,6 +271,11 @@ public class ThirdPersonCam : MonoBehaviour
     {
         mAngleH += Mathf.Clamp(delta.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed;
         mAngleV += Mathf.Clamp(delta.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed;
+    }
+
+    private void OnJoystickCamPinch(float delta)
+    {
+        mDistance += delta * mZoomSpeed;
     }
 #endif
 
