@@ -108,6 +108,7 @@ public class ThirdPersonCam : MonoBehaviour
     void Awake()
     {
         mCamera = GetComponent<Camera>().transform;
+        mDistance = (mMinDistance + mMaxDistance) * 0.5f;
     }
 
     // Use this for initialization
