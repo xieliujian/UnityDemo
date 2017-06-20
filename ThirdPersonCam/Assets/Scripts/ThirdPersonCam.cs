@@ -8,8 +8,10 @@ public class ThirdPersonCam : MonoBehaviour
 {
     #region 常量
 
+#if USEINPUTSYSTEM
     public const string INPUT_MOUSE_X = "Mouse X";
     public const string INPUT_MOUSE_Y = "Mouse Y";
+#endif
     public const string INPUT_MOUSE_SCROLLWHEEL = "Mouse ScrollWheel";
     public const string ERROR_UN_BINDCAM = "ThirdPersonCam脚本没有绑定摄像机!";
     public const string ERROR_UN_PLAYER = "ThirdPersonCam脚本没有指定玩家";
@@ -27,11 +29,6 @@ public class ThirdPersonCam : MonoBehaviour
     /// 玩家transform
     /// </summary>
     public Transform mPlayer;
-
-    /// <summary>
-    /// 控制摄像机的ui
-    /// </summary>
-    public JoystickCamUI mJoystickCamUI;
 
     /// <summary>
     /// 角色中心点偏移
@@ -93,9 +90,16 @@ public class ThirdPersonCam : MonoBehaviour
     /// </summary>
     private float mDistance = 0.0f;
 
+#if USEINPUTSYSTEM
     private Vector2 mTouchMove = Vector2.zero;
 
     private Vector2 mTouchLastPos = Vector2.zero;
+#else
+    /// <summary>
+    /// 控制摄像机的ui
+    /// </summary>
+    public JoystickCamUI mJoystickCamUI;
+#endif
 
     #endregion
 
@@ -109,13 +113,13 @@ public class ThirdPersonCam : MonoBehaviour
     // Use this for initialization
 	void Start ()
     {
-#if JOYSTICKCAMUI
-        mJoystickCamUI.OnDrag += OnJoystickCamDrag;
-#else
+#if USEINPUTSYSTEM
         InputManager.touchesBegin += TouchesBegin;
         InputManager.touchesMove += TouchesMoved;
         InputManager.touchesStationary += TouchesStationary;
         InputManager.touchesEnd += TouchesEnd;
+#else
+        mJoystickCamUI.OnDrag += OnJoystickCamDrag;
 #endif
     }
 	
@@ -126,13 +130,13 @@ public class ThirdPersonCam : MonoBehaviour
 
     void OnDestroy()
     {
-#if JOYSTICKCAMUI
-        mJoystickCamUI.OnDrag -= OnJoystickCamDrag;
-#else
+#if USEINPUTSYSTEM
         InputManager.touchesBegin -= TouchesBegin;
         InputManager.touchesMove -= TouchesMoved;
         InputManager.touchesStationary -= TouchesStationary;
         InputManager.touchesEnd -= TouchesEnd;
+#else
+        mJoystickCamUI.OnDrag -= OnJoystickCamDrag;
 #endif
     }
 
@@ -150,7 +154,7 @@ public class ThirdPersonCam : MonoBehaviour
             return;
         }
 
-#if !JOYSTICKCAMUI
+#if USEINPUTSYSTEM
 
 #if UNITY_EDITOR
         if (Input.GetMouseButton(1))
@@ -179,19 +183,11 @@ public class ThirdPersonCam : MonoBehaviour
         mCamera.position = mPlayer.position + camYRotation * mPivotOffset + animRotation * mCamOffset * mDistance;
     }
 
-    #endregion
+#endregion
 
     #region 回调函数
 
-#if JOYSTICKCAMUI
-
-    private void OnJoystickCamDrag(Vector2 delta)
-    {
-        mAngleH += Mathf.Clamp(delta.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed;
-        mAngleV += Mathf.Clamp(delta.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed;
-    }
-
-#else
+#if USEINPUTSYSTEM
     private int mJoystickIndex = -1;
 
     private int mMoveIndex = -1;
@@ -269,14 +265,19 @@ public class ThirdPersonCam : MonoBehaviour
             }
         }
     }
+#else
+    private void OnJoystickCamDrag(Vector2 delta)
+    {
+        mAngleH += Mathf.Clamp(delta.x / Screen.width, -1.0f, 1.0f) * mHorizontalAimingSpeed;
+        mAngleV += Mathf.Clamp(delta.y / Screen.height, -1.0f, 1.0f) * mVerticalAimingSpeed;
+    }
 #endif
 
     #endregion
 
     #region 函数
 
-#if !JOYSTICKCAMUI
-
+#if USEINPUTSYSTEM
     private bool IsTouchOnJoystick(Vector2 touchpos)
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -285,7 +286,6 @@ public class ThirdPersonCam : MonoBehaviour
         Rect rect = new Rect(0, 0, Screen.width / 3.0f, Screen.height / 2.0f);
         return rect.Contains(touchpos);
     }
-
 #endif
 
     #endregion
