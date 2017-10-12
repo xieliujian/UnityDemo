@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 10
   productGUID: fddcb8f818eeaff4daf060b30ec4c39c
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.ChangZhou.QQWeChatAuthLogin
+  bundleIdentifier: com.fengsheng.seawar
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
@@ -197,8 +197,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: E:/Xieliujian/UnityDemo/trunk/QQWeChatAuthLogin/keystore/user.keystore
+  AndroidKeyaliasName: seawar
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
