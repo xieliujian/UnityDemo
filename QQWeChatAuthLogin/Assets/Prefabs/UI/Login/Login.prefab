@@ -37,6 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224675411485539638}
+  - component: {fileID: 114644994793084294}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -189,6 +190,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: WeChat Auth Login
+--- !u!114 &114644994793084294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365030513207186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6d1d13369699b48b6fa1741f68332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mQQAuthBtn: {fileID: 114745823443866798}
+  mWeChatAuthBtn: {fileID: 114840875925981186}
 --- !u!114 &114716487652025848
 MonoBehaviour:
   m_ObjectHideFlags: 1
