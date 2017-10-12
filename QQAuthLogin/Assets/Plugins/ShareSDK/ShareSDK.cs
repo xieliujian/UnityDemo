@@ -33,9 +33,12 @@ namespace cn.sharesdk.unity3d
 		public EventHandler getFriendsHandler;
 		public EventHandler followFriendHandler;
 
+        public static ShareSDK Instance = null;
+
 		void Awake()
-		{				
-			Type type = devInfo.GetType();
+		{
+            Instance = this;
+            Type type = devInfo.GetType();
 			Hashtable platformConfigs = new Hashtable();
 			FieldInfo[] devInfoFields = type.GetFields();
 			foreach (FieldInfo devInfoField in devInfoFields) 
