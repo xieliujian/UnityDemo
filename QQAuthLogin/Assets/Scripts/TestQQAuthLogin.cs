@@ -24,12 +24,13 @@ public class TestQQAuthLogin : MonoBehaviour {
 
     void Awake()
     {
-        mShareSDK = ShareSDK.Instance;
+        
     }
 
     // Use this for initialization
     void Start ()
     {
+        mShareSDK = ShareSDK.Instance;
         mShareSDK.authHandler = OnAuthHandler;
         mQQLoginBtn.onClick.AddListener(OnQQLoginBtnClick);
 	}
