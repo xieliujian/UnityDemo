@@ -1,4 +1,8 @@
 
+com.fengsheng.seawar
+1.3.2
+8
+
 // Share SDK
 1f13517c2255e
 1e22b071764778231550a1546bb5d005
