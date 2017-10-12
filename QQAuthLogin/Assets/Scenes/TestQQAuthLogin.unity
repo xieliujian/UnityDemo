@@ -579,22 +579,22 @@ Prefab:
     - target: {fileID: 114206785868457732, guid: bd94edab83a8e164a9583f40d0fefe2a,
         type: 2}
       propertyPath: appKey
-      value: 1f13517c2255e
+      value: 218e06243a520
       objectReference: {fileID: 0}
     - target: {fileID: 114206785868457732, guid: bd94edab83a8e164a9583f40d0fefe2a,
         type: 2}
       propertyPath: appSecret
-      value: 1e22b071764778231550a1546bb5d005
+      value: 03cce110b60ccfc0f497994b2207cf80
       objectReference: {fileID: 0}
     - target: {fileID: 114206785868457732, guid: bd94edab83a8e164a9583f40d0fefe2a,
         type: 2}
       propertyPath: devInfo.qq.AppId
-      value: 101422366
+      value: 101434290
       objectReference: {fileID: 0}
     - target: {fileID: 114206785868457732, guid: bd94edab83a8e164a9583f40d0fefe2a,
         type: 2}
       propertyPath: devInfo.qq.AppKey
-      value: 3f63ba5ccca213a58ed198c4f6979f17
+      value: 5d2a4b69d5e2e7247e2c14800a8b1827
       objectReference: {fileID: 0}
     - target: {fileID: 114206785868457732, guid: bd94edab83a8e164a9583f40d0fefe2a,
         type: 2}

@@ -60,6 +60,15 @@ public class TestQQAuthLogin : MonoBehaviour {
     {
         Debug.Log("OnAuthHandler : reqID : " + reqID + " state : " + state + " type : " + type);
         Debug.Log("OnAuthHandler : data : " + data.toJson());
+
+        if (state == ResponseState.Success)
+        {
+            if (type == PlatformType.QQ)
+            {
+                Hashtable datatemp = mShareSDK.GetAuthInfo(type);
+                Debug.Log("QQData : " + datatemp.toJson());
+            }
+        }
     }
 
     #endregion
