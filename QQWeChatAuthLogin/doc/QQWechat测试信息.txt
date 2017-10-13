@@ -1,0 +1,19 @@
+
+com.fengsheng.seawar
+1.3.2
+8
+
+// Share SDK
+1f13517c2255e
+1e22b071764778231550a1546bb5d005
+
+// QQ
+101422366
+3f63ba5ccca213a58ed198c4f6979f17
+
+// WeChat
+wxa91f710abcb778cf
+b03732d3ebccd8c422d4f6711b130e07
+gh_afb25ac019c9@app
+/page/API/pages/share/share
+
