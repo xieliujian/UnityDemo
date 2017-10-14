@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -500,6 +500,26 @@ Prefab:
     - target: {fileID: 114661361632942572, guid: 6a1c099c17d9de84398cdd448b7cde3a,
         type: 2}
       propertyPath: devInfo.wechat.AppSecret
+      value: b03732d3ebccd8c422d4f6711b130e07
+      objectReference: {fileID: 0}
+    - target: {fileID: 114661361632942572, guid: 6a1c099c17d9de84398cdd448b7cde3a,
+        type: 2}
+      propertyPath: devInfo.qq.app_id
+      value: 101422366
+      objectReference: {fileID: 0}
+    - target: {fileID: 114661361632942572, guid: 6a1c099c17d9de84398cdd448b7cde3a,
+        type: 2}
+      propertyPath: devInfo.qq.app_key
+      value: 3f63ba5ccca213a58ed198c4f6979f17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114661361632942572, guid: 6a1c099c17d9de84398cdd448b7cde3a,
+        type: 2}
+      propertyPath: devInfo.wechat.app_id
+      value: wxa91f710abcb778cf
+      objectReference: {fileID: 0}
+    - target: {fileID: 114661361632942572, guid: 6a1c099c17d9de84398cdd448b7cde3a,
+        type: 2}
+      propertyPath: devInfo.wechat.app_secret
       value: b03732d3ebccd8c422d4f6711b130e07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
