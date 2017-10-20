@@ -197,7 +197,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Xieliujian/UnityDemo/trunk/QQWeChatAuthLogin/keystore/user.keystore
+  AndroidKeystoreName: E:/Xieliujian/UnityDemo/trunk/QQWeChatAuthLogin/keystore/user.keystore
   AndroidKeyaliasName: seawar
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
