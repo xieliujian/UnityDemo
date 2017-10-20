@@ -20,8 +20,8 @@ namespace cn.sharesdk.unity3d
 		public string appKey = "moba6b6c6d6";
 		public string appSecret = "b89d2427a3bc7ad1aea1e1e8c1d36bf3";
 		 #elif UNITY_IPHONE
-		public string appKey = "iosv1101";
-		public string appSecret = "";
+		public string appKey = "1f13517c2255e";
+		public string appSecret = "1e22b071764778231550a1546bb5d005";
 		 #endif
 
 		public DevInfoSet devInfo;
