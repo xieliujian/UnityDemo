@@ -12,8 +12,8 @@ namespace cn.sharesdk.unity3d
 
 				public ShareSDKConfig()
 				{
-						this.appKey = "moba6b6c6d6";
-						this.appSecret = "b89d2427a3bc7ad1aea1e1e8c1d36bf3";
+						this.appKey = "1f13517c2255e";
+						this.appSecret = "1e22b071764778231550a1546bb5d005";
 				}
 		}		
 				
