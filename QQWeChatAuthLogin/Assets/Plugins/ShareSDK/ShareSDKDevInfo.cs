@@ -111,8 +111,8 @@ namespace cn.sharesdk.unity3d
 		#if UNITY_ANDROID
 		public const int type = (int) PlatformType.QQ;
 		public string SortId = "2";
-		public string AppId = "100371282";
-		public string AppKey = "aed9b0303e3ed1e27bae87c33761161d";
+		public string AppId = "101422366";
+		public string AppKey = "3f63ba5ccca213a58ed198c4f6979f17";
 		public bool BypassApproval = true;
 		public bool ShareByAppClient = true;
 		#elif UNITY_IPHONE
@@ -148,8 +148,8 @@ namespace cn.sharesdk.unity3d
 		#if UNITY_ANDROID
 		public string SortId = "5";
 		public const int type = (int) PlatformType.WeChat;
-		public string AppId = "wx4868b35061f87885";
-		public string AppSecret = "64020361b8ec4c99936c0e3999a9f249";
+		public string AppId = "wxa91f710abcb778cf";
+		public string AppSecret = "b03732d3ebccd8c422d4f6711b130e07";
 		public string userName = "gh_afb25ac019c9@app";
 		public string path = "/page/API/pages/share/share";
 		public bool BypassApproval = true;
@@ -767,8 +767,8 @@ namespace cn.sharesdk.unity3d
 		//对于安卓端，请在类Wechat,WechatMoments或WechatFavorite中配置相关信息↑	
 		#elif UNITY_IPHONE
 		public const int type = (int) PlatformType.WechatPlatform;
-		public string app_id = "wx4868b35061f87885";
-		public string app_secret = "64020361b8ec4c99936c0e3999a9f249";
+		public string app_id = "wxa91f710abcb778cf";
+		public string app_secret = "b03732d3ebccd8c422d4f6711b130e07";
 		#endif
 	}
 
@@ -780,8 +780,8 @@ namespace cn.sharesdk.unity3d
 		//对于安卓端，请在类QQ或QZone中配置相关信息↑	
 		#elif UNITY_IPHONE
 		public const int type = (int) PlatformType.QQPlatform;
-		public string app_id = "100371282";
-		public string app_key = "aed9b0303e3ed1e27bae87c33761161d";
+		public string app_id = "101422366";
+		public string app_key = "3f63ba5ccca213a58ed198c4f6979f17";
 		public string auth_type = "both";  //can pass "both","sso",or "web" 
 		#endif
 	}

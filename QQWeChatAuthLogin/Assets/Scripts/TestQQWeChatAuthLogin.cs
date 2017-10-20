@@ -12,6 +12,13 @@ public class WechatData
     public string unionID;
 }
 
+public class PhoneWechatData
+{
+	public string access_token;
+	public string openid;
+	public string unionid;
+}
+
 public class QQData
 {
     public string token;
@@ -127,6 +134,7 @@ public class TestQQWeChatAuthLogin : MonoBehaviour
             }
             else if (type == PlatformType.WeChat)
             {
+#if UNITY_ANDROID
                 Hashtable datatemp = mShareSDK.GetAuthInfo(type);
                 Debug.Log("OnAuthHandler wechatdata : " + datatemp.toJson());
 
@@ -135,6 +143,15 @@ public class TestQQWeChatAuthLogin : MonoBehaviour
                 string openid = wechatdata.openID;
                 string unionid = wechatdata.unionID;
                 Debug.Log("OnAuthHandler wechatdata token : " + token + " openid : " + openid + " unionid : " + unionid);
+#endif
+
+#if UNITY_IPHONE
+				PhoneWechatData wechatdata = JsonUtility.FromJson<PhoneWechatData>(data.toJson());
+				string token = wechatdata.access_token;
+				string openid = wechatdata.openid;
+				string unionid = wechatdata.unionid;
+				Debug.Log("OnAuthHandler wechatdata token : " + token + " openid : " + openid + " unionid : " + unionid);
+#endif
             }
         }
     }
