@@ -10,6 +10,7 @@
 * [AnimClipExtract](#Demo3)
 * [UIModelShow](#Demo4)
 * [Localization](#Demo5)
+* [QQWechatAuthLoign](#Demo6)
 ****
 
 <h2 id="Demo1">BoomBeachOcean的Demo展示海岛奇兵匹配地图海洋的效果</h2>
@@ -56,3 +57,5 @@
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/Localization/Chinese.png)
 
 ****
+
+<h2 id="Demo6">QQWechatAuthLogin的Demo展示使用ShareSDK进行QQ和Wechat登录</h2>
