@@ -59,3 +59,6 @@
 ****
 
 <h2 id="Demo6">QQWechatAuthLogin的Demo展示使用ShareSDK进行QQ和Wechat登录</h2>
+
+* a, 效果图如下:
+![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/QQWechatAuthLogin/QQ20171021-153400%402x.png)
