@@ -69,7 +69,7 @@
 
 ![效果图](https://github.com/xieliujian/UnityDemo/blob/master/Snapshot/QQWechatAuthLogin/QQ20171021-201447%402x.png)
 
-需要提供一个和包名一样的jar包，不然微信登录不能成功
+需要提供一个和包名一样的jar包，不然微信登录不能成功, 这个jar包可以参考Demo.jar包自己写，或者联系shareSdk客服
 
 * c, QQ WeChat在iOS集成注意
 
